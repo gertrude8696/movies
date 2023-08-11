@@ -19,6 +19,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/movies', (req, res) => {
+  console.log(req.query.search)
   const keyword = req.query.search?.trim()
   const matchedMovies = keyword ? movies.filter((mv) =>
     Object.values(mv).some((property) => {

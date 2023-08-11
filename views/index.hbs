@@ -2,7 +2,7 @@
   <!-- search bar -->
   <div class="row" id="search-bar">
     <div class="col-12">
-      <form action="/movies">
+      <form action="/movies" method="get">
         <div class="input-group mb-3">
           <input type="text" name="search" class="form-control" placeholder="Enter movie name to search..."
             aria-label="movie info" aria-describedby="button-addon-search" value=" {{keyword}}">
@@ -19,7 +19,7 @@
     <div class="col-sm-3">
       <a href="/movie/{{movie.id}}" class="text-secondary">
         <div class="card mb-2">
-          <img class="card-img-top" src="{{../BASE_IMG_URL}}{{movie.image}}"    alt="Card image cap">
+          <img class="card-img-top" src="{{../BASE_IMG_URL}}{{movie.image}}" alt="Card image cap">
           <div class="card-body movie-item-body">
             <h6 class="card-title">{{movie.title}}</h6>
           </div>
