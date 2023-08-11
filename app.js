@@ -11,7 +11,7 @@ app.get('/movies', (req, res) => {
 
 app.engine('.hbs', engine({ extname: '.hbs' }))
 app.set('view engine', '.hbs')
-app.set('views', './views') 
+app.set('views', './views')
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
@@ -22,9 +22,10 @@ app.get('/movies', (req, res) => {
   res.render('index')
 })
 
-app.get('/movie/:id', (req, res) =>{
+app.get('/movie/:id', (req, res) => {
   const id = req.params.id
-  res.send(`read movie: ${id}`)
+  const movie = movies.find((mv) => mv.id.toString() === id)
+  res.render('detail', { movie, BASE_IMG_URL })
 })
 
 app.listen(port, () => {
