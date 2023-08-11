@@ -5,10 +5,6 @@ const port = 3000
 const movies = require('./public/jsons/movies.json').results
 const BASE_IMG_URL = 'https://movie-list.alphacamp.io/posters/'
 
-app.get('/movies', (req, res) => {
-  res.render('index', { movies, BASE_IMG_URL })
-})
-
 app.engine('.hbs', engine({ extname: '.hbs' }))
 app.set('view engine', '.hbs')
 app.set('views', './views')
@@ -19,8 +15,12 @@ app.get('/', (req, res) => {
 })
 
 app.get('/movies', (req, res) => {
-  console.log(req.query.search)
   const keyword = req.query.search?.trim()
+  if (!keyword) {
+    res.render('index', {movies, BASE_IMG_URL})
+    return
+  }
+  
   const matchedMovies = keyword ? movies.filter((mv) =>
     Object.values(mv).some((property) => {
       if (typeof property === 'string') {
